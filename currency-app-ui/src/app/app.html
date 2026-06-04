@@ -1,0 +1,98 @@
+<div class="container mt-4">
+  <h1 class="mb-4 text-primary">Currency App</h1>
+
+  <!-- Actions -->
+  <div class="mb-4">
+    <button class="btn btn-success me-2" (click)="fetchCurrencies()">Download rates</button>
+
+    <button class="btn btn-primary me-2" (click)="loadCurrencies()">Show rates</button>
+
+    <button class="btn btn-warning" (click)="sortByRate()">Sort by rate</button>
+  </div>
+
+  <!-- Search -->
+  <div class="card p-3 mb-4">
+    <h4 class="mb-3">Search currencies</h4>
+
+    <!-- Date -->
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <input type="date" class="form-control" [(ngModel)]="selectedDate" />
+      </div>
+
+      <div class="col-md-2">
+        <button class="btn btn-outline-primary w-100" (click)="searchByDate()">
+          Search by date
+        </button>
+      </div>
+    </div>
+
+    <!-- Year -->
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <input type="number" class="form-control" placeholder="Year" [(ngModel)]="selectedYear" />
+      </div>
+
+      <div class="col-md-2">
+        <button class="btn btn-outline-success w-100" (click)="searchByYear()">
+          Search by year
+        </button>
+      </div>
+    </div>
+
+    <!-- Month -->
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Month (1-12)"
+          [(ngModel)]="selectedMonth"
+        />
+      </div>
+
+      <div class="col-md-2">
+        <button class="btn btn-outline-warning w-100" (click)="searchByMonth()">
+          Search by month
+        </button>
+      </div>
+    </div>
+
+    <!-- Quarter -->
+    <div class="row">
+      <div class="col-md-4">
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Quarter (1-4)"
+          [(ngModel)]="selectedQuarter"
+        />
+      </div>
+
+      <div class="col-md-2">
+        <button class="btn btn-outline-danger w-100" (click)="searchByQuarter()">
+          Search by quarter
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <table class="table table-striped table-hover table-bordered" *ngIf="currencies.length > 0">
+    <thead class="table-dark">
+      <tr>
+        <th>Code</th>
+        <th>Currency</th>
+        <th>Rate</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let currency of currencies">
+        <td>{{ currency.code }}</td>
+        <td>{{ currency.currency }}</td>
+        <td>{{ currency.rate ?? currency.mid }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
