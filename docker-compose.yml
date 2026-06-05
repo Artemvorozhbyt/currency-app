@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:17
+    container_name: currency-db
+    restart: always
+    environment:
+      POSTGRES_DB: currencydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+
+  api:
+    build:
+      context: ./CurrencyApp.API
+    container_name: currency-api
+    depends_on:
+      - db
+    ports:
+      - "5262:8080"
+    environment:
+      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=currencydb;Username=postgres;Password=postgres
+
+  frontend:
+    build:
+      context: ./currency-app-ui
+    container_name: currency-ui
+    depends_on:
+      - api
+    ports:
+      - "4200:80"
