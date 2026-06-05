@@ -1,4 +1,6 @@
 # Currency App
+<img width="1900" height="910" alt="image" src="https://github.com/user-attachments/assets/129461ac-c9f1-4269-ba2c-c1c8a47877b1" />
+
 
 ## Project Description
 
